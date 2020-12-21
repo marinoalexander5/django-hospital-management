@@ -1,0 +1,49 @@
+{% extends "clinica/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="container">
+    <h1>Listado de Turnos</h1>
+    <div class="d-flex justify-content-between mb-3">
+      <a class="btn btn-outline-info" href="{% url 'clinica:turno_create'%}">Nuevo Turno</a>
+      <a class="btn btn-outline-info" href="{% url 'clinica:turnos'%}">Ver todos</a>
+    </div>
+    {% if turnos %}
+    <form class="d-flex justify-content-between align-items-center mb-3" method="GET" action="">
+      {{ form|crispy }}
+      <button class="btn btn-outline-info"  type="submit">Buscar</button>
+    </form>
+    <div class="table-responsive-md">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">Paciente</th>
+            <th scope="col">Profesional Medico</th>
+            <th scope="col">Especialidad</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for turno in turnos %}    
+          <tr>
+            <td scope="row">{{ turno.fecha|date:"d/m/Y H:i" }}</td>
+            <td scope="row">{{ turno.paciente.apellido }}, {{ turno.paciente.nombre }}</td>
+            <td scope="row">{{ turno.profesional_medico }}, {{ turno.profesional_medico.nombre }}</td>
+            <td scope="row">definir Especialidad</td>
+            <td scope="row">
+              {% if perms.clinica.change_turno and perms.clinica.delete_turno %}
+              <a class="btn btn-sm btn-outline-info p-2 bd-highlight" href="{% url 'clinica:turno_update' turno.id %}">Modificar</a>
+              <a class="btn btn-sm btn-outline-danger p-2 bd-highlight" href="{% url 'clinica:turno_delete' turno.id %}">Eliminar</a>
+              {% elif perms.clinica.view_historial_medico %}
+              <a class="btn btn-sm btn-outline-info p-2 bd-highlight" href="{% url 'clinica:historial_medico_update' paciente.id %}">Historial Medico</a>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>       
+    {% else %}
+        <p>No hay turnos en el listado.</p>
+    {% endif %}
+{% endblock %}

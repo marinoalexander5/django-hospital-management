@@ -1,0 +1,40 @@
+{% extends "clinica/base.html" %}
+{% block content%}
+{% if user.is_authenticated %}
+    {% if not user.groups.all %}
+        Debes aguardar a que el Administrador te asigne a un grupo.    
+    {% else %}
+        <h1>{{ user.groups.all.0 }}</h1>
+        {% if perms.clinica.view_turno %}
+            <div>
+                <a class="btn btn-outline-info" href="{% url 'clinica:turnos' %}">Turnos</a>
+            </div>
+        {% endif %}
+        {% if perms.clinica.view_historial_medico %}
+            <div>
+                <a class="btn btn-outline-info" href="{% url 'clinica:turnos' %}">Personal Medico</a>
+            </div>
+        {% endif %}
+
+
+            <div>
+                <a href="{% url 'clinica:turnos' %}">Ventas</a>
+            </div>
+            <div>
+                <a href="{% url 'clinica:turnos' %}">Taller</a>
+            </div>
+            <div>
+                <a href="{% url 'clinica:turnos' %}">Gerencia</a>
+            </div>
+            <div>
+                <a href="{% url 'accounts:logout' %}">Cerrar Sesión</a>
+            </div>
+    {% endif %}
+
+{% else %}
+    <div>
+        <a class="btn btn-primary" href="{% url 'accounts:login' %}">Ingresar</a>
+        <a class="btn btn-primary" href="{% url 'accounts:register' %}">Registrarse</a>
+    </div>
+{% endif %}
+{% endblock %}

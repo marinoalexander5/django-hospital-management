@@ -1,0 +1,8 @@
+{% extends "clinica/base_nav.html" %}
+{% block content %}
+	<h2>Ha cerrado sesión.</h2>
+	<div>	
+		<a class="btn btn-outline-info" href="{% url 'accounts:login' %}">Iniciar sesión</a>
+		<a class="btn btn-outline-info" href="{% url 'accounts:register' %}">Registrarse</a>
+	</div>
+{% endblock content %}

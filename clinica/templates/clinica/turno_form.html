@@ -1,0 +1,26 @@
+{% extends "clinica/base.html" %}
+{% load crispy_forms_tags %}
+{% block head %}
+	{% load static %}
+	{% load bootstrap4 %}
+	{% bootstrap_css %}
+	{% bootstrap_javascript jquery='full' %}
+	{{ form.media }}
+	<!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'clinica/css/main.css' %}" type="text/css">
+{% endblock head %}
+{% block content %}
+	<div class="container">
+		<div class="mb-3">
+			<a class="btn btn-outline-info" href="{% url 'clinica:paciente_create' %}">Agregar Paciente</a>
+		</div>
+		 <div>
+			<form method="POST">
+				{% csrf_token %}
+        		{{ form|crispy }}
+				<button class="btn btn-outline-info" type="submit">Confirmar</button>
+				<a class="btn btn-outline-secondary" href="{% url 'clinica:turnos' %}">Cancelar</a>
+			</form>
+		</div>
+	</div>
+{% endblock content %}

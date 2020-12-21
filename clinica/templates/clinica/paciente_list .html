@@ -1,0 +1,18 @@
+{% extends "clinica/base_nav.html" %}
+{% block content %}
+    <h1>Listado de Pacientes</h1>
+    {% if pacientes %}
+        {% for paciente in pacientes %}    
+            <div>
+                <div>{{ paciente.id }}</div>
+                <div>Nombre: {{ paciente.nombre }}</div>
+                <div>Apellido: {{ paciente.apellido }}</div>
+                <!-- <div>Historial: {{ paciente.historial }}</div> -->
+                <!-- <a class="btn btn-sm btn-outline-info" href="{% url 'clinica:turno_update' turno.id %}">Modificar</a>
+                <a class="btn btn-sm btn-outline-danger" href="{% url 'clinica:turno_delete' turno.id %}">Eliminar</a> -->
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No hay turnos en el listado.</p>
+    {% endif %}
+{% endblock %}
