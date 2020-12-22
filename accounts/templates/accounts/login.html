@@ -1,0 +1,11 @@
+{% extends "clinica/base_nav.html"%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form method="post" action="{% url 'accounts:login' %}">
+{% csrf_token %}
+{{ form|crispy }}
+<input type="submit" class="btn btn-primary" value="Ingresar">
+<input type="hidden" name="next" value="{{ next }}">
+</form>
+{% endblock %}

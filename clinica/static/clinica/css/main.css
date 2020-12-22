@@ -1,0 +1,18 @@
+body {
+    background-color: rgb(114, 192, 182);
+} 
+
+.inline-date{
+    width: auto;
+    display: inline-block;
+}
+
+.filtro-turnos{
+    width: auto;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.container{
+    margin: 3%;
+}

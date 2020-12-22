@@ -1,0 +1,19 @@
+{% extends "clinica/base.html" %}
+{% block content%}
+<h1>Personal Médico</h1>
+<h2>Turnos</h2>
+{% if user.is_authenticated %}
+{% for %}
+    <div class="btn btn-outline-info">
+        <a href="{% url 'clinica:turnos' %}">Turnos</a>
+    </div>
+{% endfor %}
+{% else %}
+    <div>
+        <div>Para ingresar a este sitio debes <a class="btn" href="{% url 'accounts:login' %}">Ingresar</a> como Personal Médico</div>
+    </div>
+{% endif %}
+    <div class="btn btn-outline-info">
+        <a href="{% url 'accounts:logout' %}">Cerrar Sesión</a>
+    </div> 
+{% endblock %}
