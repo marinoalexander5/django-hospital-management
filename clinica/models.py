@@ -17,7 +17,7 @@ class Paciente(models.Model):
     dni = ARDNIField(max_length=10, min_length=7)
     fecha_nacimiento= models.DateField()
     email = models.EmailField()
-    telefono = models.PhoneNumberField()
+    telefono = models.CharField(max_length=17)
     direccion = models.CharField(max_length=50)
     localidad = models.CharField(max_length=50)
     obra_social = models.ForeignKey(ObraSocial, on_delete=models.CASCADE, null=True)

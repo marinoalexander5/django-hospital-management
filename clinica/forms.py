@@ -2,7 +2,7 @@ from django import forms
 from .models import Paciente, Turno
 from django.forms.widgets import SelectDateWidget
 from django.utils import timezone
-from bootstrap_datepicker_plus import DateTimePickerInput
+from bootstrap_datepicker_plus import DateTimePickerInput, DatePickerInput
 
 
 class PacienteCreateForm(forms.ModelForm):
@@ -10,8 +10,8 @@ class PacienteCreateForm(forms.ModelForm):
         model = Paciente
         fields = '__all__'
         widgets = {
-            'fecha_nacimiento': DateTimePickerInput(),
-            
+            'fecha_nacimiento': DatePickerInput(),
+            'telefono': forms.TextInput(attrs={'data-mask': "(+54) 000000-0000"})
         }
 
 
