@@ -1,5 +1,7 @@
-body {
-    background-color: rgb(114, 192, 182);
+body{
+    padding-top: 50px;
+    z-index: 0;
+    background-color: rgba(230, 223, 214, 0.795);
 } 
 
 .inline-date{
@@ -13,6 +15,20 @@ body {
     justify-content: space-between;
 }
 
-.container{
-    margin: 3%;
+.jumbotron{
+    padding: 50px 10px 50px 10px;
+    margin: 0px auto;
+    background: #ffffff;
+}
+
+.footer{
+    margin: 0px auto;
+    padding: 20px 0px 20px 0px;
+    color: floralwhite;
+}
+
+.banner-img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
 }

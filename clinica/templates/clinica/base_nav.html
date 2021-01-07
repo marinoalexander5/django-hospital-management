@@ -1,24 +1,31 @@
 {% extends "clinica/base.html" %}
 {% block navbar %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-steel fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
-    <a class="navbar-brand mr-4" href="{% url 'clinica:index' %}">Clinica</a>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'clinica:index' %}">Clinica</a>
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarToggle">
-      <div class="navbar-nav mr-auto">
-        <a class="nav-item nav-link" href="{% url 'clinica:index' %}">index</a>
-        <a class="nav-item nav-link" href="{% url 'clinica:index' %}">About</a>
-      </div>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item {% if request.resolver_match.url_name == 'index' %}active{% endif %}"><a class="nav-link" href="{% url 'clinica:index' %}"><span class="fa fa-clinic-medical fa-lg"></span> Inicio</a></li>
+        {% if perms.clinica.view_turno %}
+        <li class="nav-item"><a class="nav-link {% if 'turno' in request.resolver_match.url_name %}active{% endif %}" href="./turno_list.html"><span class="fa fa-calendar-check fa-lg"></span> Turnos</a></li>
+        {% endif %}
+        {% if perms.clinica.view_historial_medico %}
+        <li class="nav-item {% if 'paciente' in request.resolver_match.url_name %}active{% endif %}"><a class="nav-link" href="#"><span class="fa fa-user-injuried fa-lg"></span> Pacientes</a></li>
+        {% endif %}
+        <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-address-card fa-lg"></span> Contacto</a></li>
+      </ul>
       <!-- Navbar Right Side -->
       <div class="navbar-nav">
         {% if user.is_authenticated %}
-          <a class="nav-item nav-link" href="{% url 'clinica:index' %}">New Post</a>
-          <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">Logout</a>	
+          <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">Cerrar Sesión</a>	
         {% else %}
-          <a class="nav-item nav-link" href="{% url 'accounts:login' %}">Login</a>
-          <a class="nav-item nav-link" href="{% url 'accounts:register' %}">Registrarse</a>
+          <a class="nav-item nav-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}" href="{% url 'accounts:login' %}">Iniciar Sesión</a>
+          <a class="nav-item nav-link {% if request.resolver_match.url_name == 'register' %}active{% endif %}" href="{% url 'accounts:register' %}">Registrarse</a>
         {% endif %}
       </div>
     </div>

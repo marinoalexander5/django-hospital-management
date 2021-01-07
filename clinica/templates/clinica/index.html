@@ -1,8 +1,10 @@
-{% extends "clinica/base.html" %}
+{% extends "clinica/base_nav.html" %}
 {% block content%}
 {% if user.is_authenticated %}
     {% if not user.groups.all %}
+    <div class="container">
         Debes aguardar a que el Administrador te asigne a un grupo.    
+    </div>
     {% else %}
         <h1>{{ user.groups.all.0 }}</h1>
         {% if perms.clinica.view_turno %}
