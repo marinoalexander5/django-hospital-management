@@ -8,90 +8,54 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
     <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" crossorigin="anonymous"> -->
   
     <!-- Font Awesome CSS -->    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/v4-shims.css">
 
-    <!-- JQuery -->   
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
-    <!-- JQuery UI -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
-
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'clinica/css/main.css' %}" type="text/css">
-
+    
     <title>Alexander Marino - Clinica</title> 
     {% block head %}{% endblock %}
 
 </head>
 <body>
+    {% block navbar %}{% endblock %}    
+    {% block carousel %} {% endblock carousel %}
     <div class="container">
-
-        {% block navbar %}{% endblock %}
-
-        <header class="jumbotron">
-            <div class="container">
-                <div class="row row-header">
-                    <div class="col-12 col-sm-6">
-                        <h1>Clinica Optometría</h1>
-                        <p>Nuestro compromiso es prestar servicios de la más alta calidad en salud visual a nuestros pacientes.</p>
-                    </div>
-                    <div class="col-12 col-sm-6 text-center">
-                        <!-- <img class="float-right banner-img" src="{% static 'clinica/images/selective-myopia.jpg' %}"> -->
-                        <img class="img-fluid banner-img" src="{% static 'clinica/images/eye.jpg' %}">
-                    </div>
-                </div>
+        <div class="row">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
             </div>
-        </header>
+            {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+        </div>
+    </div>
 
+    <footer class="footer bg-dark fixed-bottom">
         <div class="container">
-            <div class="row">
-            {% if messages %}
-                {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
+            <div class="row justify-content-center">             
+                <div class="col-auto">
+                    <p>© Copyright 2021 Clinica Optometría Marino</p>
                 </div>
-                {% endfor %}
-            {% endif %}
-            {% block content %}{% endblock %}
             </div>
         </div>
+    </footer>
 
-        <footer class="footer bg-dark">
-            <div class="container">
-                <div class="row">             
-                    <div>
-                        <h5>Donde encontrarnos</h5>
-                        <address>
-                        123, Lorem ipsum<br>
-                        Lorem, ipsum<br>
-                        Argentina<br>
-                        <i class="fa fa-phone fa-lg"></i> +54 9 11 1234 5678<br>
-                        <i class="fa fa-fax fa-lg"></i> +54 9 11 1234 5678<br>
-                        <i class="fa fa-envelope fa-lg"></i> <a href="mailto:optometria@marino.net">optometria@marino.net</a>
-                    </address>
-                    </div>
-                    <div class="col-12 col-sm-4 align-self-center">
-                        <div class="text-center">
-                            <a class="btn btn-social-icon btn-google" href="http://google.com/+"><i class="fa fa-google-plus fa-lg"></i></a>
-                            <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook fa-lg"></i></a>
-                            <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin fa-lg"></i></a>
-                            <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter fa-lg"></i></a>
-                            <a class="btn btn-social-icon btn-google" href="http://youtube.com/"><i class="fa fa-youtube fa-lg"></i></a>
-                            <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope fa-lg"></i></a>
-                        </div>
-                    </div>
-            </div>
-            <div class="row justify-content-center">             
-                    <div class="col-auto">
-                        <p>© Copyright 2021 Clinica Optometría Marino</p>
-                    </div>
-            </div>
-            </div>
-        </footer>
-    </div>
+    <!-- JQuery -->   
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <!-- JQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+    <!-- Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    {% block scripts %}{% endblock %}
 </body>
 </html>

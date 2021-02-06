@@ -1,6 +1,22 @@
 {% extends "clinica/base_nav.html" %}
-{% block content%}
+{% load static %}
+{% block content %}
+
 {% if user.is_authenticated %}
+    <header class="jumbotron">
+        <div class="container">
+            <div class="row row-header">
+                <div class="col-12 col-sm-6">
+                    <h1>Clinica Optometría</h1>
+                    <p>Nuestro compromiso es prestar servicios de la más alta calidad en salud visual a nuestros pacientes.</p>
+                </div>
+                <div class="col-12 col-sm-6 text-center">
+                    <!-- <img class="float-right banner-img" src="{% static 'clinica/images/selective-myopia.jpg' %}"> -->
+                    <img class="img-fluid banner-img" src="{% static 'clinica/images/eye.jpg' %}">
+                </div>
+            </div>
+        </div>
+    </header>
     {% if not user.groups.all %}
     <div class="container">
         Debes aguardar a que el Administrador te asigne a un grupo.    
@@ -34,9 +50,59 @@
     {% endif %}
 
 {% else %}
-    <div>
-        <a class="btn btn-primary" href="{% url 'accounts:login' %}">Ingresar</a>
-        <a class="btn btn-primary" href="{% url 'accounts:register' %}">Registrarse</a>
-    </div>
+  <div class="row row-content">
+    <div id="mycarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#mycarousel" data-slide-to="1"></li>
+          <li data-target="#mycarousel" data-slide-to="2"></li>
+          <li data-target="#mycarousel" data-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block banner-img" src="{% static 'clinica/images/banner-home-1.jpg' %}" alt="glasses">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Clinica Optometría</h5>
+              <p class="d-none d-sm-block text-dark">Elaboramos </p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img class="d-block banner-img" src="{% static 'clinica/images/banner-home-2.jpg' %}">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Clinica Optometría</h5>
+              <p class="d-none d-sm-block text-dark">texto</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img class="d-block banner-img" src="{% static 'clinica/images/banner-home-3.jpg' %}">
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="tex-dark">Clinica Optometría</h5>
+              <p class="d-none d-sm-block text-dark">texto</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img class="d-block banner-img" src="{% static 'clinica/images/banner-home-4.jpg' %}">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Clinica Optometría</h5>
+              <p class="d-none d-sm-block text-dark">texto</p>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#mycarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </a>
+        <a class="carousel-control-next" href="#mycarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </a>
+      </div>
+  </div>
+  <div class="align-items-center">
+      <a class="btn btn-primary" href="{% url 'accounts:login' %}">Ingresar</a>
+      <a class="btn btn-primary" href="{% url 'accounts:register' %}">Registrarse</a>
+  </div>
+
 {% endif %}
+{% endblock %}
+{% block scripts %}
+  <script src="{% static 'clinica/js/carousel.js' %}"></script>
 {% endblock %}
